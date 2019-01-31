@@ -383,7 +383,8 @@ func main() {
 		}
 
 		deviceDetectionStarted := time.Now()
-		for i := 1; i <= 10; i++ {
+		for i := 1; i <= 20; i++ {
+			log.Printf("Sleeping")
 			time.Sleep(5 * time.Second)
 			if osCommand.ProcessState != nil && osCommand.ProcessState.Exited() {
 				failf("Emulator exited, error: %s", err)
