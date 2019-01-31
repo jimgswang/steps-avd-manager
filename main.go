@@ -291,8 +291,7 @@ func main() {
 				"-g", configs.Tag,
 				"-d", configs.Profile,
 				"-c", customProperties.Get("sdcard.size", "128M"),
-				"-k", fmt.Sprintf("system-images;android-%s;%s;%s", configs.Version, configs.Tag, configs.Abi),
-                                " &")
+				"-k", fmt.Sprintf("system-images;android-%s;%s;%s", configs.Version, configs.Tag, configs.Abi))
 
 			if out, err := cmd.RunAndReturnTrimmedCombinedOutput(); err != nil {
 				failf("Failed to create avd, error: %s output: %s", err, out)
@@ -384,7 +383,7 @@ func main() {
 		}
 
 		deviceDetectionStarted := time.Now()
-		for true {
+                for i := 1; i <= 10; i++ {
 			time.Sleep(5 * time.Second)
 			if osCommand.ProcessState != nil && osCommand.ProcessState.Exited() {
 				failf("Emulator exited, error: %s", err)
