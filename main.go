@@ -143,6 +143,7 @@ func runningDeviceInfos(androidHome string) (map[string]string, error) {
 		return map[string]string{}, fmt.Errorf("scanner failed, error: %s", err)
 	}
 
+	fmt.Println(" - Checking state: ", deviceStateMap)
 	return deviceStateMap, nil
 }
 
@@ -383,9 +384,9 @@ func main() {
 		}
 
 		deviceDetectionStarted := time.Now()
-		for i := 1; i <= 1; i++ {
+		for true {
 			log.Printf("Sleeping")
-			time.Sleep(60 * time.Second)
+			// time.Sleep(60 * time.Second)
 			if osCommand.ProcessState != nil && osCommand.ProcessState.Exited() {
 				failf("Emulator exited, error: %s", err)
 			}
