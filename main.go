@@ -379,6 +379,8 @@ func main() {
 		}
 
 		err = osCommand.Start()
+		fmt.Println("configs", configs)
+		fmt.Println("avd id ", configs.ID)
 		fmt.Println("start command ", osCommand)
 		if err != nil {
 			failf("Failed to start emulator, error: %s", err)
@@ -387,7 +389,7 @@ func main() {
 		deviceDetectionStarted := time.Now()
 		for true {
 			log.Printf("Sleeping")
-			time.Sleep(1 * time.Second)
+			time.Sleep(10 * time.Second)
 			if osCommand.ProcessState != nil && osCommand.ProcessState.Exited() {
 				failf("Emulator exited, error: %s", err)
 			}
